@@ -1,5 +1,6 @@
 const {
   listHeroes,
+  getHeroesByName,
   getHero,
   createHero,
   updateHero,
@@ -9,13 +10,21 @@ const {
 const appRouter = (app) => {
 
   app.get("/heroes", async (req, res) => {
-    const heroes = await listHeroes();
+    let heroes = [];
+    if (req.query.name) {
+      heroes = await getHeroesByName(req.query.name);
+    } else {
+      heroes = await listHeroes();
+    }
     res.status(200).send(heroes);
   });
   
   app.get("/hero/:id", async (req, res) => {
     const hero = await getHero(+req.params.id);
-    res.status(200).send(hero);
+    if (hero) {
+      return res.status(200).send(hero);
+    }
+    res.status(404).send();
   });
 
   app.post("/hero", async (req, res) => {
@@ -28,8 +37,8 @@ const appRouter = (app) => {
     res.status(200).send(hero);
   });
 
-  app.delete("/hero", async (req, res) => {
-    const hero = await deleteHero(req.body);
+  app.delete("/hero/:id", async (req, res) => {
+    const hero = await deleteHero(+req.params.id);
     res.status(200).send(hero);
   });
 }

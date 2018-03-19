@@ -11,9 +11,11 @@ let heroes = [
   { id: 10, name: 'Tornado' }
 ];
 
-const returnWithDelay = (result) => new Promise(resolve => setTimeout(() => resolve(result), 700));
+const returnWithDelay = (result) => new Promise(resolve => setTimeout(() => resolve(result), 200));
 
 const listHeroes = () => returnWithDelay(heroes);
+
+const getHeroesByName = (name) => returnWithDelay(heroes.filter(hero => hero.name.toLowerCase().includes(name.toLowerCase())));
 
 const getHero = (id) => returnWithDelay(heroes.find(hero => hero.id === id));
 
@@ -30,13 +32,14 @@ const updateHero = (modifiedHero) => {
   return returnWithDelay(modifiedHero);
 }
 
-const deleteHero = (heroToRemove) => {
-  heroes = heroes.filter(hero => hero.id !== heroToRemove.id);
-  return returnWithDelay(heroToRemove);
+const deleteHero = (id) => {
+  heroes = heroes.filter(hero => hero.id !== id);
+  return returnWithDelay();
 }
 
 module.exports = {
   listHeroes,
+  getHeroesByName,
   getHero,
   createHero,
   updateHero,
