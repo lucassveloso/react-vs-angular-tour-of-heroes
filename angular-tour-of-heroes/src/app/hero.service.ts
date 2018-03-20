@@ -18,7 +18,7 @@ export class HeroService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  private apiUrl = 'http://localhost:3000';  // URL to web api
+  private apiUrl = 'http://localhost:4000';  // URL to web api
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {

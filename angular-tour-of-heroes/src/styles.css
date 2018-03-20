@@ -51,7 +51,12 @@ button:disabled {
 
 /* Navigation link styles */
 
+nav {
+  font-size: 0;
+}
+
 nav a {
+  font-size: 16px;
   padding: 5px 10px;
   text-decoration: none;
   margin-right: 10px;
