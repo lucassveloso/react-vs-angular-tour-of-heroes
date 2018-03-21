@@ -4,6 +4,7 @@ export const theme = {
   colors: {
     azure: '#369',
     tundora: '#444',
+    gray: '#888',
     gallery: '#eee',
     lynch: '#607D8B',
     cerulean: '#039be5',

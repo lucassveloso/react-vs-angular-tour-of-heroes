@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import dashboardReducer from './containers/Dashboard/reducer';
+import dashboardReducer from './containers/Dashboard/reducer/index';
 import appReducer from './containers/App/reducer';
 
 export default combineReducers({
