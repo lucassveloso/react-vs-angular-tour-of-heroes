@@ -22,8 +22,8 @@ const Messages = ({ onClear, logs }) => (
   <Wrapper>
     <SubTitleStyled>Messages</SubTitleStyled>
     <Button onClick={onClear}>clear</Button>
-    <For of={logs} render={(log) => (
-      <Message>{log}</Message>
+    <For of={logs} render={(log, i) => (
+      <Message key={i}>{log}</Message>
     )} />
   </Wrapper>
 )

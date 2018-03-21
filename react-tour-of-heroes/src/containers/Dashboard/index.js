@@ -1,11 +1,16 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import SubTitle from '../../components/SubTitle';
 import Autocomplete from '../../components/Autocomplete';
 import Box from '../../components/Box';
 import List from './List';
 import { fetchHeroes, searchHeroes } from './reducer/index';
+
+const SubTitleStyled = styled(SubTitle)`
+  font-size: 18.5px;
+`;
 
 class Dashboard extends PureComponent {
   componentDidMount() {
@@ -21,7 +26,7 @@ class Dashboard extends PureComponent {
         <h4>Hero Search</h4>
         <Autocomplete onChange={(e) => actions.onSearchHeroes(e.target.value)} data={heroesFound} />
         <Box textAlign="center">
-          <SubTitle >Top Heroes</SubTitle>
+          <SubTitleStyled >Top Heroes</SubTitleStyled>
           <List data={heroes.slice(1, 5)} />
         </Box>
       </div>
