@@ -1,7 +1,7 @@
 {
-  "name": "react-slingshot",
-  "version": "7.0.1",
-  "description": "Starter kit for creating apps with React and Redux",
+  "name": "react-tour-of-heroes",
+  "version": "1.0.0",
+  "description": "",
   "engines": {
     "npm": ">=3"
   },
@@ -27,7 +27,6 @@
     "open:cover": "npm run test:cover && opn ./coverage/lcov-report/index.html",
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
   },
-  "author": "Cory House",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
