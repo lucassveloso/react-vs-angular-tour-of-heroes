@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { For } from 'react-extras';
 import { connect } from 'react-redux';
 import { clearLog } from './reducer';
 import Dashboard from '../Dashboard';
@@ -8,6 +8,7 @@ import Heroes from '../Heroes';
 import Container from '../../components/Container';
 import Menu from '../../components/Menu';
 import Title from '../../components/Title';
+import Messages from './Messages';
 
 const App = ({ app: { logs }, actions }) => (
   <Container>
@@ -28,12 +29,15 @@ const App = ({ app: { logs }, actions }) => (
       </Switch>
     </main>
     <footer>
-      MESSAGES
-      <button onClick={actions.onClear}>Clear</button>
-      { logs }
+      <Messages onClear={actions.onClear} logs={logs} />
     </footer>
   </Container>
 );
+
+App.propTypes = {
+  actions: PropTypes.object.isRequired,
+  app: PropTypes.object.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

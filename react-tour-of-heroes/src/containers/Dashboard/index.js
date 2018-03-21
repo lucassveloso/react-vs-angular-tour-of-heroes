@@ -18,12 +18,12 @@ class Dashboard extends PureComponent {
 
     return(
       <div>
-      <h4>Hero Search</h4>
-      <Autocomplete onChange={(e) => actions.onSearchHeroes(e.target.value)} data={heroesFound} />
-      <Box textAlign="center">
-        <SubTitle >Top Heroes</SubTitle>
-        <List data={heroes.slice(1, 5)} />
-      </Box>
+        <h4>Hero Search</h4>
+        <Autocomplete onChange={(e) => actions.onSearchHeroes(e.target.value)} data={heroesFound} />
+        <Box textAlign="center">
+          <SubTitle >Top Heroes</SubTitle>
+          <List data={heroes.slice(1, 5)} />
+        </Box>
       </div>
     );
   }

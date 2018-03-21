@@ -5,7 +5,6 @@ const Box = styled.div`
   text-align: ${({ textAlign }) => textAlign};
 
   ${({ displayType }) => displayType === 'block' && css`
-    float: left;
     width: 100%;
   `}
 

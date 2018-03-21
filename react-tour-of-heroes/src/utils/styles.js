@@ -9,6 +9,7 @@ export const theme = {
     lynch: '#607D8B',
     cerulean: '#039be5',
     geyser: '#CFD8DC',
+    red: '#FF0000'
   },
   font: {
     default: 'Arial, Helvetica, sans-serif',
