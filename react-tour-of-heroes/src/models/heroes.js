@@ -3,6 +3,7 @@ import API from '../api';
 
 export default {
   state: {
+    hero: {},
     heroes: [],
     heroesFound: [],
   },
@@ -12,6 +13,9 @@ export default {
     },
     heroesSearched(state, heroesFound) {
       return { ...state, heroesFound };
+    },
+    heroSelected(state, hero) {
+      return { ...state, hero };
     },
   },
   effects: {
@@ -27,6 +31,18 @@ export default {
       }
       dispatch.app.finishLoading();
     },
+    async findHeroAsync(id) {
+      dispatch.app.startLoading();
+      try {
+        const data = await API.heroes.find(id);
+        this.heroSelected(data);
+        dispatch.app.addMessage(`fetched hero id=${id}`);
+      } catch (e) {
+        this.heroSelected({});
+        dispatch.app.addMessage(`getHero failed: ${e.message}`);
+      }
+      dispatch.app.finishLoading();
+    },
     async searchHeroesAsync(term) {
       dispatch.app.startLoading();
       try {
@@ -39,14 +55,25 @@ export default {
       }
       dispatch.app.finishLoading();
     },
-    async onCreateHeroAsync(name) {
+    async createHeroAsync(name) {
       dispatch.app.startLoading();
       try {
         await API.heroes.store({ name });
         dispatch.app.addMessage(`added hero w/ name=${name}`);
         await this.fetchHeroesAsync();
       } catch (e) {
-        dispatch.app.addMessage(`add hero failed: ${e.message}`);
+        dispatch.app.addMessage(`addHero failed: ${e.message}`);
+      }
+      dispatch.app.finishLoading();
+    },
+    async updateHeroAsync(hero) {
+      dispatch.app.startLoading();
+      try {
+        await API.heroes.update(hero);
+        dispatch.app.addMessage(`updated hero id=${hero.id}`);
+        await this.findHeroAsync(hero.id);
+      } catch (e) {
+        dispatch.app.addMessage(`updateHero failed: ${e.message}`);
       }
       dispatch.app.finishLoading();
     },

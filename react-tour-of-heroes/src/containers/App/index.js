@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Dashboard from '../Dashboard';
 import Heroes from '../Heroes';
+import Detail from '../Detail';
 import Container from '../../components/Container';
 import Menu from '../../components/Menu';
 import Title from '../../components/Title';
@@ -25,6 +26,7 @@ const App = ({ app: { messages, loading }, actions }) => (
         )} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/heroes" component={Heroes} />
+        <Route path="/hero/:id" component={Detail} />
       </Switch>
     </main>
     <footer>

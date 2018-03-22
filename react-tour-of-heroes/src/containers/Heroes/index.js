@@ -40,7 +40,7 @@ function mapDispatch({ heroes }) {
     actions: {
       onFetchHeroes: () => heroes.fetchHeroesAsync(),
       onDeleteHero: (id) => heroes.deleteHeroAsync(id),
-      onCreateHero: (name) => heroes.onCreateHeroAsync(name),
+      onCreateHero: (name) => heroes.createHeroAsync(name),
     },
   };
 }

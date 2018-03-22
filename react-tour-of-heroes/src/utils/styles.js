@@ -6,6 +6,7 @@ export const theme = {
     tundora: '#444',
     gray: '#888',
     gallery: '#eee',
+    alto: '#ddd',
     lynch: '#607D8B',
     cerulean: '#039be5',
     geyser: '#CFD8DC',

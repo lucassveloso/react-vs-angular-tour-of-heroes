@@ -2,55 +2,50 @@ import React from 'react';
 import styled from 'styled-components';
 import { For } from 'react-extras';
 import { arrayOf, object, func } from 'prop-types';
+import { theme } from '../../../utils/styles';
 import Link from '../../../components/Link';
 import Button from '../../../components/Button';
 
 const Wrapper = styled.ul`
-  margin: 0 0 2em 0;
+  margin: 0 0 32px 0;
   list-style-type: none;
   padding: 0;
-  width: 15em;
+  width: 240px;
 `;
 
 const Item = styled.li`
   position: relative;
-  cursor: pointer;
-  background-color: #EEE;
-  margin: .5em;
-  height: 2.2em;
+  background-color: ${theme.colors.gallery};
+  margin: 8px;
+  height: 35px;
   border-radius: 4px;
   &:hover {
-    color: #607D8B;
-    background-color: #DDD;
-    left: .1em;
+    color: ${theme.colors.lynch};
+    background-color: ${theme.colors.alto};
+    left: 2px;
   }
 `;
 
 const LinkStyled = styled(Link)`
-  color: #888;
+  color: ${theme.colors.gray};;
   text-decoration: none;
   position: relative;
   display: block;
   width: 250px;
   &:hover {
-    color: #607D8B;
+    color: ${theme.colors.lynch};
   }
 `;
 
 const Badge = styled.span`
   display: inline-block;
-  font-size: small;
+  width: 32px;
+  padding: 10px;
+  margin-right: 12px;
   color: white;
-  padding: 0.8em 0.7em 0 0.7em;
-  background-color: #607D8B;
-  line-height: 1em;
-  position: relative;
-  left: -1px;
-  top: 0;
-  height: 2.7em;
-  min-width: 16px;
+  font-size: small;
   text-align: right;
-  margin-right: .8em;
+  background-color: ${theme.colors.lynch};
   border-radius: 4px 0 0 4px;
 `;
 
