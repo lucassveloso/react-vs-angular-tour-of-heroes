@@ -10,6 +10,7 @@ export default styled.button`
   padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
+
   &:hover {
     background-color: ${theme.colors.geyser};;
   }

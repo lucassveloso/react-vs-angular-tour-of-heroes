@@ -41,8 +41,8 @@ App.propTypes = {
   app: PropTypes.object.isRequired,
 };
 
-const mapState = (state) => ({
-  app: state.app,
+const mapState = ({ app }) => ({
+  app,
 })
 
 const mapDispatch = ({ app: { clearMessages }}) => ({

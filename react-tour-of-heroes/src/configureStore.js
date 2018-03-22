@@ -1,6 +1,5 @@
 import createHistory from 'history/createBrowserHistory';
-import { routerMiddleware } from 'react-router-redux';
-import { routerReducer } from 'react-router-redux';
+import { routerReducer, routerMiddleware } from 'react-router-redux';
 import { init } from '@rematch/core';
 import models from './models';
 

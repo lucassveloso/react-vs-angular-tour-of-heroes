@@ -1,6 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link as ReLink } from 'react-router-dom';
 
-export default ({ to, children, className }) => (
-  <Link to={to} className={className}>{children}</Link>
+const Link = ({ to, children, className }) => (
+  <ReLink to={to} className={className}>{children}</ReLink>
 );
+
+Link.propTypes = ReLink.propTypes;
+
+export default Link;
