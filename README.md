@@ -7,6 +7,6 @@ A idéia e desenvolver o mesmo problema usando as duas tecnologias e tudo o que 
 - [x] Desenvolver a aplicação usando Angular de acordo com o tutorial;
 - [x] Criar uma API simples e fazer uso no projeto Angular;
 - [ ] Adicionar testes unitários no projeto Angular;
-- [ ] Desenvolver a mesma aplicação usando React já consumindo a API;
+- [x] Desenvolver a mesma aplicação usando React já consumindo a API;
 - [ ] Adicionar testes unitários no projeto React;
 - [ ] Reunir informações aprendidas para fundamentar um comparativo;
