@@ -6,7 +6,6 @@ import SubTitle from '../../components/SubTitle';
 import Autocomplete from '../../components/Autocomplete';
 import Box from '../../components/Box';
 import List from './List';
-import { fetchHeroes, searchHeroes } from './reducer/index';
 
 const SubTitleStyled = styled(SubTitle)`
   font-size: 18.5px;
@@ -19,7 +18,7 @@ class Dashboard extends PureComponent {
   }
 
   render() {
-    const { dashboard: { heroes, heroesFound }, actions } = this.props;
+    const { heroes: { heroes, heroesFound }, actions } = this.props;
 
     return(
       <div>
@@ -36,22 +35,19 @@ class Dashboard extends PureComponent {
 
 Dashboard.propTypes = {
   actions: PropTypes.object.isRequired,
-  dashboard: PropTypes.object.isRequired,
+  heroes: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state) {
-  return {
-    dashboard: state.dashboard,
-  };
-}
+const mapState = (state) => ({
+  heroes: state.heroes,
+})
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: {
-      onFetchHeroes: () => dispatch(fetchHeroes()),
-      onSearchHeroes: (term) => dispatch(searchHeroes(term)),
-    },
-  };
-}
+const mapDispatch = ({ heroes: { fetchHeroesAsync, searchHeroesAsync }}) => ({
+  actions: {
+    onFetchHeroes: () => fetchHeroesAsync(),
+    onSearchHeroes: (term) => searchHeroesAsync(term),
+  },
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+
+export default connect(mapState, mapDispatch)(Dashboard);

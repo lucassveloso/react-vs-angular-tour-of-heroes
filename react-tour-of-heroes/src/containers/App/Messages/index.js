@@ -18,11 +18,11 @@ const Message = styled.span`
   display: block;
 `;
 
-const Messages = ({ onClear, logs }) => (
+const Messages = ({ onClear, messages }) => (
   <Wrapper>
     <SubTitleStyled>Messages</SubTitleStyled>
     <Button onClick={onClear}>clear</Button>
-    <For of={logs} render={(log, i) => (
+    <For of={messages} render={(log, i) => (
       <Message key={i}>{log}</Message>
     )} />
   </Wrapper>
@@ -30,7 +30,7 @@ const Messages = ({ onClear, logs }) => (
 
 Messages.propTypes = {
   onClear: func.isRequired,
-  logs: arrayOf(string),
+  messages: arrayOf(string),
 };
 
 export default Messages;

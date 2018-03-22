@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { clearLog } from './reducer';
 import Dashboard from '../Dashboard';
 import Heroes from '../Heroes';
 import Container from '../../components/Container';
@@ -10,7 +9,7 @@ import Menu from '../../components/Menu';
 import Title from '../../components/Title';
 import Messages from './Messages';
 
-const App = ({ app: { logs }, actions }) => (
+const App = ({ app: { messages }, actions }) => (
   <Container>
     <header>
       <Title>Tour of Heroes</Title>
@@ -29,7 +28,7 @@ const App = ({ app: { logs }, actions }) => (
       </Switch>
     </main>
     <footer>
-      <Messages onClear={actions.onClear} logs={logs} />
+      <Messages onClear={actions.onClear} messages={messages} />
     </footer>
   </Container>
 );
@@ -39,18 +38,14 @@ App.propTypes = {
   app: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state) {
-  return {
-    app: state.app,
-  };
-}
+const mapState = (state) => ({
+  app: state.app,
+})
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: {
-      onClear: () => dispatch(clearLog()),
-    },
-  };
-}
+const mapDispatch = ({ app: { clearMessages }}) => ({
+  actions: {
+    onClear: () => clearMessages(),
+  },
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapState, mapDispatch)(App);

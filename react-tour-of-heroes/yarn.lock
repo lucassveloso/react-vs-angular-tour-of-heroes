@@ -78,6 +78,12 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@rematch/core@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@rematch/core/-/core-0.5.3.tgz#83a2dbe7aeec404fb58a6308ad0efe8433319fba"
+  dependencies:
+    redux "^3.7.2"
+
 "@types/node@*":
   version "9.4.7"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.7.tgz#57d81cd98719df2c9de118f2d5f3b1120dcd7275"
@@ -6482,11 +6488,7 @@ redux-mock-store@1.5.1:
   dependencies:
     lodash.isplainobject "^4.0.6"
 
-redux-thunk@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
-
-redux@3.7.2:
+redux@^3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
   dependencies:

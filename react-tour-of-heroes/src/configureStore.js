@@ -1,41 +1,48 @@
-import { createStore, compose, applyMiddleware } from 'redux';
-import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
-import reducers from './reducers';
 import { routerMiddleware } from 'react-router-redux';
+import { routerReducer } from 'react-router-redux';
+import { init } from '@rematch/core';
+import models from './models';
 
 export const history = createHistory();
 
 function configureStoreProd(initialState) {
   const reactRouterMiddleware = routerMiddleware(history);
-  const middlewares = [
-    thunk,
-    reactRouterMiddleware,
-  ];
+  const middlewares = [ reactRouterMiddleware ];
+  const reducers = { routerReducer };
 
-  return createStore(reducers, initialState, compose(applyMiddleware(...middlewares)));
+  return init({
+    models,
+    redux: {
+      initialState,
+      middlewares,
+      reducers,
+    },
+  });
 }
 
 function configureStoreDev(initialState) {
   const reactRouterMiddleware = routerMiddleware(history);
-  const middlewares = [
-    reduxImmutableStateInvariant(),
-    thunk,
-    reactRouterMiddleware,
-  ];
+  const middlewares = [ reactRouterMiddleware ];
+  const reducers = { routerReducer };
 
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  const store = createStore(reducers, initialState, composeEnhancers(applyMiddleware(...middlewares)));
+  return init({
+    models,
+    redux: {
+      initialState,
+      middlewares,
+      reducers,
+    },
+  });
 
-  if (module.hot) {
-    module.hot.accept('./reducers', () => {
-      const nextReducer = require('./reducers').default; // eslint-disable-line global-require
-      store.replaceReducer(nextReducer);
-    });
-  }
+  // if (module.hot) {
+  //   module.hot.accept('./models', () => {
+  //     const nextReducer = require('./reducers').default; // eslint-disable-line global-require
+  //     store.replaceReducer(nextReducer);
+  //   });
+  // }
 
-  return store;
+  // return store;
 }
 
 export default process.env.NODE_ENV === 'production' ? configureStoreProd : configureStoreDev;

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SubTitle from '../../components/SubTitle';
 import List from './List';
-import { fetchHeroes } from '../Dashboard/reducer/index'
 
 class Heroes extends PureComponent {
   componentDidMount() {
@@ -12,7 +11,8 @@ class Heroes extends PureComponent {
   }
 
   render() {
-    const { dashboard: { heroes } } = this.props;
+    const { heroes: { heroes } } = this.props;
+
     return (
       <section>
         <SubTitle>My Heroes</SubTitle>
@@ -24,21 +24,21 @@ class Heroes extends PureComponent {
 
 Heroes.propTypes = {
   actions: PropTypes.object.isRequired,
-  dashboard: PropTypes.object.isRequired,
+  heroes: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state) {
+function mapState(state) {
   return {
-    dashboard: state.dashboard,
+    heroes: state.heroes,
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatch({ heroes: { fetchHeroesAsync }}) {
   return {
     actions: {
-      onFetchHeroes: () => dispatch(fetchHeroes()),
+      onFetchHeroes: () => fetchHeroesAsync(),
     },
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Heroes);
+export default connect(mapState, mapDispatch)(Heroes);
