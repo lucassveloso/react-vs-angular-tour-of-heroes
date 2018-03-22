@@ -5,76 +5,50 @@ export default {
   state: {
     heroes: [],
     heroesFound: [],
-    loading: false,
   },
   reducers: {
-    fetchHeroes(state) {
-      return {
-        ...state,
-        heroes: [],
-        loading: true,
-      };
+    heroesFetched(state, heroes) {
+      return { ...state, heroes, heroesFound: [] };
     },
-    fetchHeroesSucceeded(state, heroes) {
-      return {
-        ...state,
-        heroes,
-        loading: false,
-      };
-    },
-    fetchHeroesFailed(state) {
-      return {
-        ...state,
-        heroes: [],
-        loading: false,
-      };
-    },
-    searchHeroes(state) {
-      return {
-        ...state,
-        heroesFound: [],
-        loading: true,
-      };
-    },
-    searchHeroesSucceeded(state, heroesFound) {
-      return {
-        ...state,
-        heroesFound,
-        loading: false,
-      };
-    },
-    searchHeroesFailed(state) {
-      return {
-        ...state,
-        heroesFound: [],
-        loading: false,
-      };
+    heroesSearched(state, heroesFound) {
+      return { ...state, heroesFound };
     },
   },
   effects: {
     async fetchHeroesAsync() {
-      this.fetchHeroes();
-
+      dispatch.app.startLoading();
       try {
         const data = await API.heroes.all();
-        this.fetchHeroesSucceeded(data);
+        this.heroesFetched(data);
         dispatch.app.addMessage('fetched heroes');
       } catch (e) {
-        this.fetchHeroesFailed();
+        this.heroesFetched([]);
         dispatch.app.addMessage(`fetchHeroes failed: ${e.message}`);
       }
+      dispatch.app.finishLoading();
     },
     async searchHeroesAsync(term) {
-      this.searchHeroes();
-
+      dispatch.app.startLoading();
       try {
         const data = term ? await API.heroes.search(term) : [];
-        this.searchHeroesSucceeded(data);
+        this.heroesSearched(data);
         dispatch.app.addMessage(`found heroes matching "${term}"`);
       } catch (e) {
-        this.searchHeroesFailed();
+        this.heroesSearched([]);
         dispatch.app.addMessage(`searchHeroes failed: ${e.message}`);
       }
+      dispatch.app.finishLoading();
+    },
+    async deleteHeroAsync(id) {
+      dispatch.app.startLoading();
+      try {
+        await API.heroes.destroy(id);
+        dispatch.app.addMessage(`deleted hero id=${id}`);
+        await this.fetchHeroesAsync();
+      } catch (e) {
+        dispatch.app.addMessage(`deleted hero failed: ${e.message}`);
+      }
+      dispatch.app.finishLoading();
     },
   }
 };

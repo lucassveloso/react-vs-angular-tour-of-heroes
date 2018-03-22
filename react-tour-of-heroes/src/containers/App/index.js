@@ -9,10 +9,10 @@ import Menu from '../../components/Menu';
 import Title from '../../components/Title';
 import Messages from './Messages';
 
-const App = ({ app: { messages }, actions }) => (
+const App = ({ app: { messages, loading }, actions }) => (
   <Container>
     <header>
-      <Title>Tour of Heroes</Title>
+      <Title>Tour of Heroes { loading && ' - Carregando' }</Title>
     </header>
     <Menu>
       <Menu.Link to="/dashboard">Dashboard</Menu.Link>
@@ -39,7 +39,7 @@ App.propTypes = {
 };
 
 const mapState = (state) => ({
-  app: state.app,
+  app: Object.assign({}, state.app),
 })
 
 const mapDispatch = ({ app: { clearMessages }}) => ({

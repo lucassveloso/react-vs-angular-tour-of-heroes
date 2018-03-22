@@ -11,12 +11,12 @@ class Heroes extends PureComponent {
   }
 
   render() {
-    const { heroes: { heroes } } = this.props;
+    const { heroes: { heroes }, actions } = this.props;
 
     return (
       <section>
         <SubTitle>My Heroes</SubTitle>
-        <List data={heroes} />
+        <List data={heroes} onDelete={actions.onDeleteHero} />
       </section>
     );
   }
@@ -33,10 +33,11 @@ function mapState(state) {
   };
 }
 
-function mapDispatch({ heroes: { fetchHeroesAsync }}) {
+function mapDispatch({ heroes: { fetchHeroesAsync, deleteHeroAsync }}) {
   return {
     actions: {
       onFetchHeroes: () => fetchHeroesAsync(),
+      onDeleteHero: (id) => deleteHeroAsync(id),
     },
   };
 }

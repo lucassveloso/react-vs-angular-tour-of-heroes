@@ -1,8 +1,15 @@
 export default {
   state: {
     messages: [],
+    loading: false,
   },
   reducers: {
+    startLoading(state) {
+      return { ...state, loading: true };
+    },
+    finishLoading(state) {
+      return { ...state, loading: false };
+    },
     addMessage(state, message) {
       return {
         ...state,

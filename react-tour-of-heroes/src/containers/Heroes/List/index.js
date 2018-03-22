@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { For } from 'react-extras';
-import { arrayOf, object} from 'prop-types';
+import { arrayOf, object, func } from 'prop-types';
 import Link from '../../../components/Link';
 import Button from '../../../components/Button';
 
@@ -64,14 +64,14 @@ const BtnRemove = styled(Button)`
 `;
 
 
-const List = ({ data }) => (
+const List = ({ data, onDelete }) => (
   <Wrapper>
     <For of={data} render={({ id, name }) => (
       <Item key={id}>
         <LinkStyled to={`/detail/${id}`}>
           <Badge>{id}</Badge> {name}
         </LinkStyled>
-        <BtnRemove>x</BtnRemove>
+        <BtnRemove onClick={() => onDelete(id)}>x</BtnRemove>
       </Item>
     )} />
   </Wrapper>
@@ -79,6 +79,7 @@ const List = ({ data }) => (
 
 List.propTypes = {
   data: arrayOf(object).isRequired,
+  onDelete: func.isRequired,
 };
 
 export default List;
