@@ -27,7 +27,9 @@ class Detail extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ value: nextProps.heroes.hero.name });
+    if (!this.state.value) {
+      this.setState({ value: nextProps.heroes.hero.name });
+    }
   }
 
   handleOnChange = (e) => {
@@ -38,7 +40,6 @@ class Detail extends PureComponent {
     e.preventDefault();
     const { heroes: { hero }, actions: { onUpdateHero } } = this.props;
     onUpdateHero({ ...hero, name: this.state.value });
-    this.setState({ value: '' });
   }
 
   render() {

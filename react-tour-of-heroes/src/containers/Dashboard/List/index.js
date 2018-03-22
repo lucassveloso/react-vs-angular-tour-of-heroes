@@ -24,7 +24,7 @@ const List = ({ data }) => (
         displayType="flex"
         justifyContent="center"
         alignItems="center"
-        to={`/hero/${id}`}
+        to={`/detail/${id}`}
       >
         { name }
       </Item>

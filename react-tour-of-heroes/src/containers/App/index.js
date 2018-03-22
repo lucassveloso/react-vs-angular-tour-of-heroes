@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Dashboard from '../Dashboard';
@@ -26,7 +27,7 @@ const App = ({ app: { messages, loading }, actions }) => (
         )} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/heroes" component={Heroes} />
-        <Route path="/hero/:id" component={Detail} />
+        <Route path="/detail/:id" component={Detail} />
       </Switch>
     </main>
     <footer>
@@ -41,7 +42,7 @@ App.propTypes = {
 };
 
 const mapState = (state) => ({
-  app: Object.assign({}, state.app),
+  app: state.app,
 })
 
 const mapDispatch = ({ app: { clearMessages }}) => ({
@@ -50,4 +51,4 @@ const mapDispatch = ({ app: { clearMessages }}) => ({
   },
 })
 
-export default connect(mapState, mapDispatch)(App);
+export default withRouter(connect(mapState, mapDispatch)(App));
