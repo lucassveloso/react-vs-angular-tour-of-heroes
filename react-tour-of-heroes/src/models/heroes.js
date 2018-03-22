@@ -39,6 +39,17 @@ export default {
       }
       dispatch.app.finishLoading();
     },
+    async onCreateHeroAsync(name) {
+      dispatch.app.startLoading();
+      try {
+        await API.heroes.store({ name });
+        dispatch.app.addMessage(`added hero w/ name=${name}`);
+        await this.fetchHeroesAsync();
+      } catch (e) {
+        dispatch.app.addMessage(`add hero failed: ${e.message}`);
+      }
+      dispatch.app.finishLoading();
+    },
     async deleteHeroAsync(id) {
       dispatch.app.startLoading();
       try {

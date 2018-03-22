@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SubTitle from '../../components/SubTitle';
+import Form from './Form';
 import List from './List';
 
 class Heroes extends PureComponent {
@@ -16,6 +17,7 @@ class Heroes extends PureComponent {
     return (
       <section>
         <SubTitle>My Heroes</SubTitle>
+        <Form onSubmit={actions.onCreateHero}/>
         <List data={heroes} onDelete={actions.onDeleteHero} />
       </section>
     );
@@ -33,11 +35,12 @@ function mapState(state) {
   };
 }
 
-function mapDispatch({ heroes: { fetchHeroesAsync, deleteHeroAsync }}) {
+function mapDispatch({ heroes }) {
   return {
     actions: {
-      onFetchHeroes: () => fetchHeroesAsync(),
-      onDeleteHero: (id) => deleteHeroAsync(id),
+      onFetchHeroes: () => heroes.fetchHeroesAsync(),
+      onDeleteHero: (id) => heroes.deleteHeroAsync(id),
+      onCreateHero: (name) => heroes.onCreateHeroAsync(name),
     },
   };
 }
