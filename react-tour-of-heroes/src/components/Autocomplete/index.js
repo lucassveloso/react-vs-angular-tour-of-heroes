@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { For } from 'react-extras';
 import { debounce } from '../../utils';
 import { theme } from '../../utils/styles';
 import Link from '../Link';
@@ -47,13 +46,13 @@ const Autocomplete = ({ onChange, data }) => (
   <Wrapper>
     <Input onChange={debounce(onChange, 300)} />
     <ul>
-      <For of={data} render={({ id, name }) => (
+      {data.map(({ id, name }) => (
         <Item key={id}>
           <LinkStyled to={`/detail/${id}`}>
             {name}
           </LinkStyled>
         </Item>
-      )} />
+      ))}
     </ul>
   </Wrapper>
 );

@@ -1,5 +1,4 @@
 import React from 'react';
-import { For } from 'react-extras';
 import { func, arrayOf, string } from 'prop-types';
 import styled from 'styled-components';
 import SubTitle from '../../../components/SubTitle';
@@ -22,9 +21,9 @@ const Messages = ({ onClear, messages }) => (
   <Wrapper>
     <SubTitleStyled>Messages</SubTitleStyled>
     <Button onClick={onClear}>clear</Button>
-    <For of={messages} render={(log, i) => (
+    {messages.map((log, i) => (
       <Message key={i}>{log}</Message>
-    )} />
+    ))}
   </Wrapper>
 )
 

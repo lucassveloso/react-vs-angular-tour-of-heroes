@@ -1,5 +1,4 @@
 import React from 'react';
-import { For } from 'react-extras';
 import { arrayOf, object } from 'prop-types';
 import Box from '../../../components/Box';
 import Link from '../../../components/Link';
@@ -18,7 +17,7 @@ const Item = Box.withComponent(Link).extend`
 
 const List = ({ data }) => (
   <Box displayType="flex" justifyContent="space-between">
-    <For of={data} render={({ id, name }) => (
+    {data.map(({ id, name }) => (
       <Item
         key={id}
         displayType="flex"
@@ -26,9 +25,9 @@ const List = ({ data }) => (
         alignItems="center"
         to={`/detail/${id}`}
       >
-        { name }
+        {name}
       </Item>
-    )} />
+    ))}
   </Box>
 )
 

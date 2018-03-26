@@ -1,47 +1,26 @@
-import createHistory from 'history/createBrowserHistory';
-import { routerReducer, routerMiddleware } from 'react-router-redux';
 import { init } from '@rematch/core';
+import { routerReducer, routerMiddleware } from 'react-router-redux'
+import createHistory from 'history/createBrowserHistory';
 import models from './models';
 
 export const history = createHistory();
 
-function configureStoreProd(initialState) {
-  const reactRouterMiddleware = routerMiddleware(history);
-  const middlewares = [ reactRouterMiddleware ];
-  const reducers = { routerReducer };
+export default (initialState = {}) => {
+  const reducers = {
+    router: routerReducer,
+  };
+
+  const middlewares = [
+    routerMiddleware(history),
+  ];
 
   return init({
     models,
     redux: {
       initialState,
-      middlewares,
       reducers,
+      middlewares,
     },
   });
-}
+};
 
-function configureStoreDev(initialState) {
-  const reactRouterMiddleware = routerMiddleware(history);
-  const middlewares = [ reactRouterMiddleware ];
-  const reducers = { routerReducer };
-
-  return init({
-    models,
-    redux: {
-      initialState,
-      middlewares,
-      reducers,
-    },
-  });
-
-  // if (module.hot) {
-  //   module.hot.accept('./models', () => {
-  //     const nextReducer = require('./reducers').default; // eslint-disable-line global-require
-  //     store.replaceReducer(nextReducer);
-  //   });
-  // }
-
-  // return store;
-}
-
-export default process.env.NODE_ENV === 'production' ? configureStoreProd : configureStoreDev;

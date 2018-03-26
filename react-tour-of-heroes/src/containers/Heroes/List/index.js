@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { For } from 'react-extras';
 import { arrayOf, object, func } from 'prop-types';
 import { theme } from '../../../utils/styles';
 import Link from '../../../components/Link';
@@ -61,14 +60,14 @@ const BtnRemove = styled(Button)`
 
 const List = ({ data, onDelete }) => (
   <Wrapper>
-    <For of={data} render={({ id, name }) => (
+    {data.map(({ id, name }) => (
       <Item key={id}>
         <LinkStyled to={`/detail/${id}`}>
           <Badge>{id}</Badge> {name}
         </LinkStyled>
         <BtnRemove onClick={() => onDelete(id)}>x</BtnRemove>
       </Item>
-    )} />
+    ))}
   </Wrapper>
 )
 
