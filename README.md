@@ -6,7 +6,7 @@ A idéia e desenvolver o mesmo problema usando as duas tecnologias e tudo o que 
 ### Roteiro:
 - [x] Desenvolver a aplicação usando Angular de acordo com o tutorial;
 - [x] Criar uma API simples e fazer uso no projeto Angular;
-- [ ] Adicionar testes unitários no projeto Angular;
+- [x] Adicionar testes unitários no projeto Angular;
 - [x] Desenvolver a mesma aplicação usando React já consumindo a API;
-- [ ] Adicionar testes unitários no projeto React;
+- [x] Adicionar testes unitários no projeto React;
 - [ ] Reunir informações aprendidas para fundamentar um comparativo;
