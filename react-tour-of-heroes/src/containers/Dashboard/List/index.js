@@ -4,7 +4,7 @@ import Box from '../../../components/Box';
 import Link from '../../../components/Link';
 import { theme } from '../../../utils/styles';
 
-const Item = Box.withComponent(Link).extend`
+export const Item = Box.withComponent(Link).extend`
   color: ${theme.colors.gallery};
   width: 23.5%;
   background-color: ${theme.colors.lynch};
