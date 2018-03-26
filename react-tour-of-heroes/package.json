@@ -110,5 +110,8 @@
         }
       ]
     }
+  },
+  "devDependencies": {
+    "webpack-bundle-analyzer": "2.11.1"
   }
 }
