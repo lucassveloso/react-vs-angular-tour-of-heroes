@@ -9,4 +9,4 @@ A idéia e desenvolver o mesmo problema usando as duas tecnologias e tudo o que 
 - [x] Adicionar testes unitários no projeto Angular;
 - [x] Desenvolver a mesma aplicação usando React já consumindo a API;
 - [x] Adicionar testes unitários no projeto React;
-- [ ] Reunir informações aprendidas para fundamentar um comparativo;
+- [x] Reunir informações aprendidas para fundamentar um comparativo;
