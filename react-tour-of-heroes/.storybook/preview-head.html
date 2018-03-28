@@ -1,0 +1,33 @@
+<script src="https://files.keyes.ie/things/baseliner/baseliner-latest.min.js"></script>
+<script>
+  window.onload = () => {
+    baseliner = new Baseliner({
+      gridHeight: 8,
+      gridOffset: 0,
+      gridColor: [255, 0, 0],
+    });
+  };
+</script>
+<style>
+  #overlay-it[style] {
+    left: 0 !important;
+    background: rgb(34, 136, 204) !important;
+    width: 115px;
+    height: 24px;
+    padding: 5px 15px;
+    box-sizing: border-box;
+    border-radius: 0px 5px 5px 0px;
+    text-decoration: none;
+    text-align: center !important;
+  }
+
+  #overlay-it * {
+    display: none !important;
+  }
+
+  #overlay-it > a[style] {
+    display: block !important;
+    margin: 0 !important;
+    text-decoration: none !important;
+  }
+</style>

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { oneOf, string } from 'prop-types';
 
 const Box = styled.div`
   display: ${({ displayType }) => displayType};
@@ -16,6 +17,13 @@ const Box = styled.div`
     align-items: ${alignItems};
   `}
 `;
+
+Box.propTypes = {
+  displayType: string,
+  textAlign: oneOf(['left', 'center', 'right']),
+  alignItems: string,
+  justifyContent: string,
+}
 
 Box.defaultProps = {
   displayType: 'block',
