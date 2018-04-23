@@ -390,7 +390,7 @@ module.exports = {
     ]
   },
   "plugins": [
-    new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({ analyzerPort: 8889, openAnalyzer: false }),
     new NoEmitOnErrorsPlugin(),
     new CopyWebpackPlugin([
       {
