@@ -13,7 +13,8 @@ const Wrapper = styled.div`
 `;
 
 const Box = styled.div`
-  width: 300px;
+  width: 100%;
+  margin: 0 30px;
 `;
 
 const ListItemStyled = styled(ListItem)`
@@ -28,21 +29,23 @@ class ComparativeBox extends React.Component {
       <ListItemStyled key={i} textSize={18}>{item}</ListItemStyled>
     ));
   }
+  renderBox(logo, itens = []) {
+    if (!itens.length) { return null; }
+    return (
+      <Box>
+        <Image src={logo} height="100" />
+        <List>
+          {this.renderListItems(itens)}
+        </List>
+      </Box>
+    );
+  }
   render() {
+    const { angular, react } = this.props;
     return (
       <Wrapper>
-        <Box>
-          <Image src={angularLogo} height="100" />
-          <List>
-            {this.renderListItems(this.props.angular)}
-          </List>
-        </Box>
-        <Box>
-          <Image src={reactLogo} height="100" />
-          <List>
-            {this.renderListItems(this.props.react)}
-          </List>
-        </Box>
+        { this.renderBox(angularLogo, angular) }
+        { this.renderBox(reactLogo, react) }
       </Wrapper>
     );
   }
